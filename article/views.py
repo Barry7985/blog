@@ -58,7 +58,6 @@ def add_comment(request, id):
         if form.is_valid():
             comment = form.save(commit=False)
             comment.article = article
-            comment.owner = request.user
             comment.save()
         else:
             context = {

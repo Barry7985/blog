@@ -21,7 +21,6 @@ class Comment(models.Model):
     content = models.TextField(verbose_name='Commentaire')
     created_at = models.DateTimeField(auto_now_add=True)
     article = models.ForeignKey(Article, on_delete=models.CASCADE)
-    owner = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=False)
 
     def __str__(self):
         return f"{self.created_at}"
