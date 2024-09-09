@@ -1,0 +1,23 @@
+{% extends "articles/base.html" %} {% block body %}
+<h1>Formulaire de création des articles</h1>
+<a href="{% url 'list_article' %}" class="btn btn-secondary mb-3">Retour</a>
+
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %} {% for field in form %}
+  <div class="mb-3">
+    {{ field.label_tag }} {{ field }} {% if field.errors %}
+    <div class="text-danger">
+      <ul class="list-unstyled">
+        {% for error in field.errors %}
+        <li>{{ error|escape }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+  <button type="submit" class="btn btn-primary">Enregistrer</button>
+  <button type="reset" class="btn btn-danger">Annuler</button>
+</form>
+
+{% endblock body %}

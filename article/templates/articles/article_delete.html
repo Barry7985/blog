@@ -1,0 +1,9 @@
+{% extends "articles/base.html" %} {% block body%}
+<h1>Suppression</h1>
+<form action="{% url 'delete' article.id %}" method="post" class="form">
+  {% csrf_token %}
+  <h1>Voulez-vous supprimer {{article.title}} ?</h1>
+  <input type="reset" value="Non" class="btn btn-secondary" />
+  <input type="submit" value="Oui" class="btn btn-danger" />
+</form>
+{% endblock %}
