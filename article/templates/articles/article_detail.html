@@ -7,7 +7,7 @@
           <h1 class="fw-bolder mb-1">{{ article.title }}</h1>
           <div class="text-muted fst-italic mb-2">
             Publié le {{ article.created_at|date:"d M Y" }} par {{
-            article.user.first_name }}
+            article.user.get_full_name }}
           </div>
           {% if user.is_authenticated and user == article.user %}
           <a class="btn btn-warning btn-sm" href="{% url 'edit' article.id %}"
@@ -52,7 +52,7 @@
             </div>
             {% empty %}
             <p class="text-muted">Aucun commentaire pour le moment.</p>
-            {% endfor %}
+            {% endfor %} {% if user.is_authenticated %}
 
             <form action="{% url 'add-comment' article.id %}" method="post">
               {% csrf_token %}
@@ -60,6 +60,7 @@
               {{ form.as_p }}
               <button type="submit" class="btn btn-primary">Envoyer</button>
             </form>
+            {% endif %}
           </div>
         </div>
       </section>
