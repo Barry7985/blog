@@ -15,7 +15,7 @@
           <h5 class="card-title">{{ article.title }}</h5>
           <p class="card-text text-muted">
             <small>
-              <i class="bi bi-person-fill"></i> {{ article.user }}
+              <i class="bi bi-person-fill"></i> {{article.user.get_full_name }}
               <span class="mx-2">|</span>
               <i class="bi bi-calendar3"></i> {{ article.created_at }}
             </small>
