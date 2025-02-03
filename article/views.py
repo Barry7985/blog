@@ -6,12 +6,25 @@ from django.views.generic import DetailView
 from django.views.generic import DeleteView
 from .forms import ArticleForm, CommentForm
 from .models import Article
-
+from django.core.paginator import Paginator
+from .filters import ArticleFilter
 
 def list_article(request):
-    arts = Article.objects.all()
+    # Récupérer tous les articles
+    articles = Article.objects.all()
+
+    # Appliquer le filtre
+    article_filter = ArticleFilter(request.GET, queryset=articles)
+    filtered_articles = article_filter.qs
+
+    # Pagination
+    paginator = Paginator(filtered_articles, 10)  # 10 articles par page
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'articles': arts
+        'filter': article_filter,
+        'page_obj': page_obj,
     }
     return render(request, 'articles/list_articles.html', context)
 
