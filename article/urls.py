@@ -11,8 +11,8 @@ from .views import (
 urlpatterns = [
     path('list_article/', list_article, name='list_article'),
     path('formulaire/', formulaire, name='form-article'),
-    path('edit/<int:id>/', get_and_update, name='edit'),
-    path('delete/<int:pk>/', ArticleDeleteView.as_view(), name='delete'),
-    path('add-comment/<int:id>/', add_comment, name='add-comment'),
-    path('detail/<int:pk>/', ArticleDetailView.as_view(), name='detail'),
+    path('edit/<uuid:pk>/', get_and_update, name='edit'),
+    path('delete/<uuid:pk>/', ArticleDeleteView.as_view(), name='delete'),
+    path('add-comment/<uuid:pk>/', add_comment, name='add-comment'),
+    path('detail/<uuid:pk>/', ArticleDetailView.as_view(), name='detail'),
 ]
