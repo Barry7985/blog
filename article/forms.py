@@ -4,13 +4,14 @@ from .models import Article, Comment
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('title', 'sumary', 'cover', 'date_pub', 'content')
+        fields = ('title', 'sumary', 'cover', 'date_pub', 'content','category')
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'sumary': forms.TextInput(attrs={'class': 'form-control'}),
             'date_pub': forms.DateInput(attrs={'class': 'form-control', 'type': 'date'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'cols': 80, 'rows': 10}),
             'cover': forms.ClearableFileInput(attrs={'class': 'form-control'}),
+            'category': forms.Select(attrs={'class': 'form-control'}),
         }
 
 class CommentForm(forms.ModelForm):
