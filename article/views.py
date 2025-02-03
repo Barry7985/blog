@@ -5,7 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic import DeleteView
 from .forms import ArticleForm, CommentForm
-from .models import Article
+from .models import Article, Category
 from django.core.paginator import Paginator
 from .filters import ArticleFilter
 
@@ -22,9 +22,13 @@ def list_article(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
+    # Récupérer toutes les catégories
+    categories = Category.objects.all()
+
     context = {
         'filter': article_filter,
         'page_obj': page_obj,
+        'categories': categories,  # Passer les catégories au template
     }
     return render(request, 'articles/list_articles.html', context)
 
