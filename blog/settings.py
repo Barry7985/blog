@@ -130,7 +130,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')  # Absolute path to the static di
 
 # Optional: If you have static files in other locations (like within apps)
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'myapp', 'static'),  # Example: static files in 'myapp'
+    os.path.join(BASE_DIR, 'blog', 'static'),  # Example: static files in 'myapp'
     # Add other directories here if needed
 ]
 
