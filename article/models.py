@@ -4,6 +4,12 @@ from django.utils import timezone
 from django.contrib.auth.models import User
 
 # Create your models here.
+class Category(models.Model):
+    name = models.CharField(max_length=100, verbose_name='nom de la catégorie')
+    description = models.TextField(blank=True, null=True, verbose_name='description')
+
+    def __str__(self):
+        return self.name
 class Article(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255 , verbose_name='titre')
@@ -13,6 +19,7 @@ class Article(models.Model):
     cover = models.ImageField(upload_to='articles', max_length=255, null=True, verbose_name="photo de couverture")
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='catégorie') 
     user = models.ForeignKey(User, on_delete=models.PROTECT, null=True, blank=False)
     
     def __str__(self):
@@ -27,3 +34,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.created_at}"
+
