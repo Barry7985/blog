@@ -18,7 +18,7 @@ def list_article(request):
     filtered_articles = article_filter.qs
 
     # Pagination
-    paginator = Paginator(filtered_articles, 10)  # 10 articles par page
+    paginator = Paginator(filtered_articles, 9)  # 9 articles par page
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -27,7 +27,6 @@ def list_article(request):
         'page_obj': page_obj,
     }
     return render(request, 'articles/list_articles.html', context)
-
 
 @login_required  # decorateur
 def formulaire(request):
