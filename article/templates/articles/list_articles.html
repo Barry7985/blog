@@ -28,18 +28,18 @@
         </div>
         <div class="card-footer bg-transparent border-top-0">
           <a
-            href="{% url 'detail' article.id %}"
+            href="{% url 'articles:detail' article.id %}"
             class="btn btn-outline-primary btn-sm"
             >Lire plus</a
           >
           {% if user.is_authenticated and user == article.user %}
           <a
-            href="{% url 'edit' article.id %}"
+            href="{% url 'articles:edit' article.id %}"
             class="btn btn-outline-success btn-sm"
             >Modifier</a
           >
           <a
-            href="{% url 'delete' article.id %}"
+            href="{% url 'articles:delete' article.id %}"
             class="btn btn-outline-danger btn-sm"
             >Supprimer</a
           >
