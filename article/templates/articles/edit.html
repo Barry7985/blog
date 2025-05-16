@@ -7,7 +7,7 @@
 
   <div class="card p-4 shadow-sm">
     <form
-      action="{% url 'edit' article.id %}"
+      action="{% url 'articles:edit' article.pk %}"
       method="post"
       enctype="multipart/form-data"
     >
